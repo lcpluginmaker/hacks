@@ -23,8 +23,7 @@ namespace LeoConsole_Hacks {
     private List<ICommand> _Commands;
     public List<ICommand> Commands { get { return _Commands; } set { _Commands = value; } }
     
-    public void PluginMain()
-    {
+    public void PluginMain() {
       _data = new ConsoleData();
       
       _Commands = new List<ICommand>();

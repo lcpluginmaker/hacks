@@ -38,9 +38,9 @@ namespace LeoConsole_Hacks {
       Console.WriteLine("see and change LeoConsole user details (inspired by chntpw)");
       Console.WriteLine("");
       Console.WriteLine("arguments:");
-      Console.WriteLine("  help:                        show this help");
-      Console.WriteLine("  show:                        list user details");
-      Console.WriteLine("  edit <name> <field> <value>: change user details");
+      Console.WriteLine("  help:                            show this help");
+      Console.WriteLine("  show:                            list user details");
+      Console.WriteLine("  edit <username> <field> <value>: change user details");
     }
 
     private List<User> getUsersList() {
@@ -120,6 +120,7 @@ namespace LeoConsole_Hacks {
         }
       }
 
+      Console.WriteLine("saving new user table");
       BinaryFormatter formatter = new BinaryFormatter();
       FileStream stream = new FileStream(usersFile, FileMode.Create);
       formatter.Serialize(stream, users);

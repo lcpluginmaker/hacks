@@ -14,3 +14,10 @@ apkg update
 apkg get https://github.com/alexcoder04/LeoConsole-hacks.git
 ```
 
+Or compile manually with `dotnet build` and copy the resulting `.dll` file to
+the `plugins` folder of your LeoConsole installtion.
+
+## Commands
+
+ - `chlcpw`: view and change user details
+
