@@ -5,8 +5,7 @@ using ILeoConsole.Plugin;
 using ILeoConsole.Core;
 
 namespace LeoConsole_Hacks {
-  public class CHLCPW : ICommand
-  {
+  public class CHLCPW : ICommand {
     public string Name { get { return "chlcpw"; } }
     public string Description { get { return "manipulate passwords and stuff lol"; } }
     public Action CommandFunktion { get { return () => Command(); } }

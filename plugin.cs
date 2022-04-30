@@ -28,6 +28,7 @@ namespace LeoConsole_Hacks {
       
       _Commands = new List<ICommand>();
       _Commands.Add(new CHLCPW());
+      _Commands.Add(new Crash());
     }
   }
 }
