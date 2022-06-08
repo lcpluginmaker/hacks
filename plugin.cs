@@ -11,6 +11,10 @@ namespace LeoConsole_Hacks {
     public string SavePath { get { return _SavePath; } set { _SavePath = value; } }
     public static string _DownloadPath;
     public string DownloadPath { get { return _DownloadPath; } set { _DownloadPath = value; } }
+    public static string _Version;
+    public string Version { get { return _Version; } set { _Version = value; } }
+    public static string _CurrentWorkingPath;
+    public string CurrentWorkingPath { get { return _CurrentWorkingPath; } set { _CurrentWorkingPath = value; } }
   }
   
   public class LCHacks : IPlugin {
@@ -23,13 +27,18 @@ namespace LeoConsole_Hacks {
     private List<ICommand> _Commands;
     public List<ICommand> Commands { get { return _Commands; } set { _Commands = value; } }
     
-    public void PluginMain() {
+    public void PluginInit() {
       _data = new ConsoleData();
-      
       _Commands = new List<ICommand>();
+    }
+
+    public void RegisterCommands(){
       _Commands.Add(new CHLCPW());
       _Commands.Add(new Crash());
     }
+
+    public void PluginMain() { }
+    public void PluginShutdown() { }
   }
 }
 

@@ -1,0 +1,18 @@
+{
+  "manifestVersion": 2.1,
+  "packageName": "hacks",
+  "packageVersion": "1.0.0",
+  "build": {
+    "command": "dotnet",
+    "args": ["build", "--nologo"],
+    "folder": ".",
+    "dlls": ["hacks.dll"],
+    "share": "./share"
+  },
+  "project": {
+    "maintainer": "alexcoder04",
+    "email": "alexcoder04@protonmail.com",
+    "homepage": "https://github.com/alexcoder04/LeoConsole-hacks",
+    "bugTracker": "https://github.com/alexcoder04/LeoConsole-hacks/issues"
+  }
+}

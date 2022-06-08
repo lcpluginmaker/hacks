@@ -8,15 +8,12 @@ However, some of it might be useful for debugging.
 
 ## How to install
 
-You can install this as a plugin using
-[apkg](https://github.com/alexcoder04/LeoConsole-apkg).
+This plugin is available in the [contrib](https://github.com/alexcoder04/LeoConsole-repo-contrib) repository.
+Enable it and then
 
 ```
-apkg get https://github.com/alexcoder04/LeoConsole-hacks.git
+apkg get hacks
 ```
-
-Or compile manually with `dotnet build` and copy the resulting `.dll` file to
-the `plugins` folder of your LeoConsole installtion.
 
 ## Commands
 
