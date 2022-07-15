@@ -6,9 +6,10 @@ namespace LeoConsole_Hacks {
   public class Crash : ICommand {
     public string Name { get { return "crash"; } }
     public string Description { get { return "crash LeoConsole"; } }
-    public Action CommandFunktion { get { return () => Command(); } }
-    private string[] _InputProperties;
-    public string[] InputProperties { get { return _InputProperties; } set { _InputProperties = value; } }
+    public Action CommandFunction { get { return () => Command(); } }
+    public Action HelpFunction { get { return () => Console.WriteLine("HAHA self documenting code"); } }
+    private string[] _Arguments;
+    public string[] Arguments { get { return _Arguments; } set { _Arguments = value; } }
     public IData data = new ConsoleData();
     private string usersFile;
 

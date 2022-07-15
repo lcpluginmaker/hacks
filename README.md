@@ -19,4 +19,5 @@ apkg get hacks
 
  - `chlcpw`: view and change user details
  - `crash`: immediatly exit LeoConsole
+ - `info`: print some data about running LeoConsole instance
 

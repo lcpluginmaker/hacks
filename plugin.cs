@@ -35,6 +35,7 @@ namespace LeoConsole_Hacks {
     public void RegisterCommands(){
       _Commands.Add(new CHLCPW());
       _Commands.Add(new Crash());
+      _Commands.Add(new Info());
     }
 
     public void PluginMain() { }

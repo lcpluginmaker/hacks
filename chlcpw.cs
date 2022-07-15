@@ -8,38 +8,40 @@ namespace LeoConsole_Hacks {
   public class CHLCPW : ICommand {
     public string Name { get { return "chlcpw"; } }
     public string Description { get { return "manipulate passwords and stuff lol"; } }
-    public Action CommandFunktion { get { return () => Command(); } }
-    private string[] _InputProperties;
-    public string[] InputProperties { get { return _InputProperties; } set { _InputProperties = value; } }
+    public Action CommandFunction { get { return () => Command(); } }
+    public Action HelpFunction { get { return () => help(); } }
+    private string[] _Arguments;
+    public string[] Arguments { get { return _Arguments; } set { _Arguments = value; } }
     public IData data = new ConsoleData();
     private string usersFile;
 
     public void Command() {
       usersFile = Path.Join(data.SavePath, "user", "Users.lcs");
       if (!File.Exists(usersFile)) {
-        Console.WriteLine("for some reason, the users file at " + usersFile + " seems not to exist");
+        LConsole.MessageErr0("for some reason, the users file at " + usersFile + " seems not to exist");
         return;
       }
-      if (_InputProperties.Length < 2) {
+      if (_Arguments.Length < 2) {
         help();
         return;
       }
-      switch (_InputProperties[1]) {
+      switch (_Arguments[1]) {
         case "help": help(); break;
         case "show": show(); break;
         case "edit": edit(); break;
-        default: Console.WriteLine("unrecognized argument: " + _InputProperties[1]); help(); break;
+        default: LConsole.MessageErr0("unrecognized argument: " + _Arguments[1]); help(); break;
       }
     }
 
     private void help() {
-      Console.WriteLine("chlcpw - CHange LeoConsole PassWord");
-      Console.WriteLine("see and change LeoConsole user details (inspired by chntpw)");
-      Console.WriteLine("");
-      Console.WriteLine("arguments:");
-      Console.WriteLine("  help:                            show this help");
-      Console.WriteLine("  show:                            list user details");
-      Console.WriteLine("  edit <username> <field> <value>: change user details");
+      Console.WriteLine(@"
+chlcpw - CHange LeoConsole PassWord
+see and change LeoConsole user details (inspired by chntpw)
+
+arguments:
+  help:                            show this help
+  show:                            list user details
+  edit <username> <field> <value>: change user details");
     }
 
     private List<User> getUsersList() {
@@ -50,7 +52,7 @@ namespace LeoConsole_Hacks {
         stream.Close();
         return users;
       } catch (Exception e) {
-        Console.WriteLine("cannot read users list: " + e.Message);
+        LConsole.MessageErr0("cannot read users list: " + e.Message);
         return new List<User>();
       }
     }
@@ -75,8 +77,8 @@ namespace LeoConsole_Hacks {
     }
 
     private void edit() {
-      if (_InputProperties.Length < 4) {
-        Console.WriteLine("not enough arguments");
+      if (_Arguments.Length < 4) {
+        LConsole.MessageErr0("not enough arguments");
         return;
       }
 
@@ -85,41 +87,41 @@ namespace LeoConsole_Hacks {
         return;
       }
 
-      Console.WriteLine("Working with user " + _InputProperties[2]);
+      LConsole.MessageSuc0("Working with user " + _Arguments[2]);
       for (int i = 0; i <= users.Count - 1; i++) {
-        if (users[i].name != _InputProperties[2]) {
+        if (users[i].name != _Arguments[2]) {
           continue;
         }
-        switch (_InputProperties[3]) {
+        switch (_Arguments[3]) {
           case "name":
-            Console.WriteLine("changing username from " + users[i].name  + " to " + _InputProperties[4]);
-            users[i].name = _InputProperties[4];
+            LConsole.MessageSuc1("changing username from " + users[i].name  + " to " + _Arguments[4]);
+            users[i].name = _Arguments[4];
             break;
           case "password":
-            Console.WriteLine("changing password to " + _InputProperties[4]);
-            users[i].password = _InputProperties[4];
+            LConsole.MessageSuc1("changing password to " + _Arguments[4]);
+            users[i].password = _Arguments[4];
             break;
           case "greeting":
-            Console.WriteLine("changing greeting from '" + users[i].begrüßung  + "' to '" + _InputProperties[4] + "'");
-            users[i].begrüßung = _InputProperties[4];
+            LConsole.MessageSuc1("changing greeting from '" + users[i].begrüßung  + "' to '" + _Arguments[4] + "'");
+            users[i].begrüßung = _Arguments[4];
             break;
           case "root":
-            if (_InputProperties[4] == "yes") {
-              Console.WriteLine("setting user to root");
+            if (_Arguments[4] == "yes") {
+              LConsole.MessageSuc1("setting user to root");
               users[i].root = true;
             } else {
-              Console.WriteLine("setting user to non-root");
+              LConsole.MessageSuc1("setting user to non-root");
               users[i].root = false;
             }
             break;
           default:
-            Console.WriteLine("invalid field: " + _InputProperties[3]);
+            LConsole.MessageErr0("invalid field: " + _Arguments[3]);
             return;
             break;
         }
       }
 
-      Console.WriteLine("saving new user table");
+      LConsole.MessageSuc0("saving new user table");
       BinaryFormatter formatter = new BinaryFormatter();
       FileStream stream = new FileStream(usersFile, FileMode.Create);
       formatter.Serialize(stream, users);
