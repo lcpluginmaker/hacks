@@ -8,7 +8,7 @@ However, some of it might be useful for debugging.
 
 ## How to install
 
-This plugin is available in the [contrib](https://github.com/alexcoder04/LeoConsole-repo-contrib) repository.
+This plugin is available in the [contrib](https://github.com/lcpluginmaker/repo-contrib) repository.
 Enable it and then
 
 ```
